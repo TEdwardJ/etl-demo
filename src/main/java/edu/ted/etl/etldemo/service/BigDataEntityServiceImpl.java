@@ -35,7 +35,7 @@ public class BigDataEntityServiceImpl implements BigDataEntityService {
                 log.info("current BigDataEntity with id {} has text field size {}b", bigDataEntity.getId(), bigDataEntity.getTextData().length());
                 bigDataEntity.setUpdatedOn(newDate);
             }
-            System.out.println("Big data rows number: " + bigDataBatch.size());
+            log.info("Big data rows number: " + bigDataBatch.size());
             bigDataEntityDao.saveAll(bigDataBatch);
             pageNumber++;
         } while (page.hasNext());

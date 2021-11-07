@@ -12,7 +12,7 @@
 	<artifactId>etl-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>etl-demo</name>
-	<description>Demo project for ETL process model ling</description>
+	<description>Demo project for ETL process modelling</description>
 	<properties>
 		<java.version>11</java.version>
 		<hibernate.version>5.4.32.Final</hibernate.version>

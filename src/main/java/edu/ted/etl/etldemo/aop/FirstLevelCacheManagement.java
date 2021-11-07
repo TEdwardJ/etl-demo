@@ -1,5 +1,6 @@
 package edu.ted.etl.etldemo.aop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.Session;
@@ -11,9 +12,9 @@ import javax.persistence.PersistenceContext;
 
 @Aspect
 @Component
+@Slf4j
 public class FirstLevelCacheManagement {
 
-    //AOP_CACHE_MANAGEMENT_ENABLED
     @Value("${AOP_CACHE_MANAGEMENT_ENABLED:true}")
     private boolean aopCacheManagement;
 
@@ -21,16 +22,17 @@ public class FirstLevelCacheManagement {
     private EntityManager entityManager;
 
     public FirstLevelCacheManagement() {
-        System.out.println(" aspect test");
+        log.info("Aspect based FirstLevelCacheManagement class created");
     }
 
     @AfterReturning("execution(* edu.ted.etl.etldemo.dao.BigDataEntityJpaDao.saveAll(..))")
     public void clearCache() {
+        log.info("aopCacheManagement = "+aopCacheManagement);
         if (aopCacheManagement) {
             var sessionFactory = entityManager.unwrap(Session.class);
             entityManager.flush();
             sessionFactory.getSession().clear();
-            System.out.println("session cache is flushed and cleared;");
+            log.info("session cache is flushed and cleared;");
         }
     }
 }
