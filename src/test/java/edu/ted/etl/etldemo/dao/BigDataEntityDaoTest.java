@@ -24,7 +24,7 @@ class BigDataEntityDaoTest {
     @Test
     void findAll() {
         List<BigDataEntity> all = bigDataEntityDao.findAll();
-        System.out.println("Big data rows number: " + all.size());
+        log.info("Big data rows number: " + all.size());
         assertFalse(all.isEmpty());
         assertTrue(all.size() > 1);
     }
