@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
+@EnableAspectJAutoProxy
 class BigDataEntityDaoTest {
 
     private BigDataEntityJpaDao bigDataEntityDao;
@@ -29,7 +31,7 @@ class BigDataEntityDaoTest {
 
     @Test
     void findAllAndUpdate() {
-        bigDataEntityService.findAllAndUpdateWithPageSize(50);
+        bigDataEntityService.findAllAndUpdateWithPageSize(20);
 
     }
 }
