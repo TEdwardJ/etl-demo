@@ -23,7 +23,7 @@ class EtlTest {
     private EntityManager entityManager;
 
     @Test
-    @Transactional()
+    @Transactional
     @Commit
     void loadBigDataIntoDB() {
         log.info("Start of loading");
@@ -31,7 +31,6 @@ class EtlTest {
             BigDataEntity entity = new BigDataEntity();
             String bigTextFData = getBigRandomTextData();
             entity.setTextData(bigTextFData);
-            //entity.setBinaryData(bigTextFData.getBytes());
             entityManager.persist(entity);
             log.info("current entity has been persisted " + entity.getId());
             if (i % 20 == 0) {
@@ -39,7 +38,7 @@ class EtlTest {
                 log.info("current entity has been flushed");
             }
         }
-        entityManager.flush();
+        //entityManager.flush();
     }
 
     private String getBigRandomTextData() {

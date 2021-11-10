@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -29,9 +30,9 @@ public class FirstLevelCacheManagement {
     public void clearCache() {
         log.info("aopCacheManagement = "+aopCacheManagement);
         if (aopCacheManagement) {
-            var sessionFactory = entityManager.unwrap(Session.class);
+            var session = entityManager.unwrap(Session.class);
             entityManager.flush();
-            sessionFactory.getSession().clear();
+            session.getSession().clear();
             log.info("session cache is flushed and cleared;");
         }
     }
